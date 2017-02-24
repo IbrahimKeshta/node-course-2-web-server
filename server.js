@@ -84,8 +84,6 @@ app.get('/bad' , (req, res) => {
 app.get('/projects', (req, res) => {
     res.render('projects.hbs', {
         pageTitle: 'Our Projects',
-        portfolioPageHere: 'Here'
-
     });
 });
 app.use(function(req, res) {
