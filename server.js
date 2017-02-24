@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000;  //store the port will be used in the app // process.env an object store all enviroment variables as key value
 // new express app
 var app = express();
 
@@ -11,9 +12,6 @@ hbs.registerPartials(__dirname + '/views/partials');
 //handlebarsjs => set view engine
 app.set('view engine', 'hbs');
 
-//middleware 
-
-app.use(express.static(__dirname + '/public'));
 
 // register middleware
 app.use((req, res, next) => { // next is when it done
@@ -84,9 +82,12 @@ app.get('/bad' , (req, res) => {
     });
 })
 
+app.use(function(req, res) {
+    res.status(404).end('Page Not Found');
+});
 
 
 //start listen will bind app to a port on the machine
-app.listen(3000, () => {
-    console.log('server is up on port 3000');
+app.listen(port, () => {
+    console.log(`server is up on port ${port}`);
 } );
